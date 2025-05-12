@@ -1,0 +1,17 @@
+[gd_scene load_steps=3 format=3 uid="uid://edslplchuths"]
+
+[ext_resource type="Texture2D" uid="uid://cy3hjyttwaopd" path="res://gem.PNG" id="1_dda7j"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_rta0t"]
+radius = 370.951
+
+[node name="sparkcrystal" type="Sprite2D"]
+texture = ExtResource("1_dda7j")
+
+[node name="sparkcrystal" type="Area2D" parent="."]
+position = Vector2(-3, 9)
+collision_layer = 16
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="sparkcrystal"]
+position = Vector2(9, -43)
+shape = SubResource("CircleShape2D_rta0t")

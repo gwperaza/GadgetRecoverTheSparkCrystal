@@ -1,0 +1,80 @@
+[gd_scene load_steps=10 format=3 uid="uid://y05mfigpyrm4"]
+
+[ext_resource type="Texture2D" uid="uid://dal6vedxr0iy7" path="res://title_graphic.png" id="1_ig5kc"]
+[ext_resource type="Texture2D" uid="uid://dha1n6838xdyn" path="res://button.png" id="2_05l2w"]
+[ext_resource type="Script" uid="uid://bhqidjrkymkim" path="res://title_screen.gd" id="2_jqemp"]
+[ext_resource type="Texture2D" uid="uid://c2cm06rf2ex8p" path="res://button_hovered.png" id="3_hafda"]
+[ext_resource type="AudioStream" uid="uid://r8wocs3x1uhc" path="res://title_mus.mp3" id="4_05l2w"]
+[ext_resource type="Texture2D" uid="uid://dy3b4hdgisaqf" path="res://background2.png" id="6_013yr"]
+[ext_resource type="Texture2D" uid="uid://c8cwaenysny0k" path="res://background1.png" id="7_8vmu4"]
+[ext_resource type="FontFile" uid="uid://cihuip6ltomyc" path="res://Chewy-Regular.ttf" id="8_013yr"]
+
+[sub_resource type="LabelSettings" id="LabelSettings_8vmu4"]
+font = ExtResource("8_013yr")
+font_size = 30
+
+[node name="Camera2D" type="Camera2D"]
+anchor_mode = 0
+script = ExtResource("2_jqemp")
+
+[node name="title_screen" type="Sprite2D" parent="."]
+position = Vector2(582, 269)
+scale = Vector2(0.557861, 0.527018)
+texture = ExtResource("1_ig5kc")
+
+[node name="TextureButton" type="TextureButton" parent="title_screen"]
+offset_left = -688.343
+offset_top = 328.262
+offset_right = -200.343
+offset_bottom = 761.262
+texture_normal = ExtResource("2_05l2w")
+texture_hover = ExtResource("3_hafda")
+ignore_texture_size = true
+stretch_mode = 0
+
+[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="title_screen"]
+stream = ExtResource("4_05l2w")
+volume_db = -3.747
+autoplay = true
+
+[node name="ParallaxBackground" type="ParallaxBackground" parent="title_screen"]
+
+[node name="ParallaxLayer2" type="ParallaxLayer" parent="title_screen/ParallaxBackground"]
+texture_repeat = 3
+motion_scale = Vector2(0.3, 0.3)
+motion_mirroring = Vector2(1220, 0)
+
+[node name="Sprite2D" type="Sprite2D" parent="title_screen/ParallaxBackground/ParallaxLayer2"]
+position = Vector2(562, 372)
+scale = Vector2(0.6, 0.6)
+texture = ExtResource("6_013yr")
+
+[node name="ParallaxLayer" type="ParallaxLayer" parent="title_screen/ParallaxBackground"]
+texture_repeat = 3
+motion_mirroring = Vector2(1220, 0)
+
+[node name="Sprite2D" type="Sprite2D" parent="title_screen/ParallaxBackground/ParallaxLayer"]
+position = Vector2(585, 365)
+scale = Vector2(0.6, 0.6)
+texture = ExtResource("7_8vmu4")
+
+[node name="Label" type="Label" parent="."]
+offset_left = -10.0
+offset_top = 11.0
+offset_right = 1163.0
+offset_bottom = 481.0
+text = "Trouble in ByteTopia!
+
+The Spark Crystal, the crowned jewel that powers the
+bot-inhabited city, has been compromised!
+
+The ferocious felines that pilfered it were last spotted
+heading into the dense jungle nearby.
+
+You are Gadget, a particuarly daring and confident resident who 
+has vowed to retrieve the Spark Crystal from the clutches of the enemy. 
+Do you have what it takes to brave the mighty jungle?"
+label_settings = SubResource("LabelSettings_8vmu4")
+horizontal_alignment = 1
+
+[connection signal="pressed" from="title_screen/TextureButton" to="." method="_on_texture_button_pressed"]
