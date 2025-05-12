@@ -1,0 +1,75 @@
+[gd_scene load_steps=9 format=3 uid="uid://cdkrkus3vnkxe"]
+
+[ext_resource type="Script" uid="uid://dl73y1liigicq" path="res://winscreen.gd" id="1_jfi5c"]
+[ext_resource type="FontFile" uid="uid://cihuip6ltomyc" path="res://Chewy-Regular.ttf" id="2_q1qil"]
+[ext_resource type="Texture2D" uid="uid://dha1n6838xdyn" path="res://button.png" id="3_v6w1o"]
+[ext_resource type="Texture2D" uid="uid://c2cm06rf2ex8p" path="res://button_hovered.png" id="4_snukx"]
+[ext_resource type="AudioStream" uid="uid://r8wocs3x1uhc" path="res://title_mus.mp3" id="5_fke0j"]
+[ext_resource type="Texture2D" uid="uid://dy3b4hdgisaqf" path="res://background2.png" id="6_yje40"]
+[ext_resource type="Texture2D" uid="uid://c8cwaenysny0k" path="res://background1.png" id="7_v6uu7"]
+
+[sub_resource type="LabelSettings" id="LabelSettings_8vmu4"]
+font = ExtResource("2_q1qil")
+font_size = 30
+
+[node name="Camera2D" type="Camera2D"]
+anchor_mode = 0
+script = ExtResource("1_jfi5c")
+
+[node name="Label" type="Label" parent="."]
+offset_left = -8.0
+offset_top = 44.0
+offset_right = 1165.0
+offset_bottom = 514.0
+text = "Congratuations!
+
+You retrieved the Spark Crystal from those terrible tigers!
+
+Not to Gadget's surprise, of course.
+
+Oh yeah. He's going to be gloating about this for weeks.
+
+The people of Bytetopia are ever in your debt!
+Want to try again?"
+label_settings = SubResource("LabelSettings_8vmu4")
+horizontal_alignment = 1
+
+[node name="Node" type="Node" parent="."]
+
+[node name="TextureButton" type="TextureButton" parent="."]
+offset_left = 469.0
+offset_top = 482.0
+offset_right = 695.0
+offset_bottom = 658.0
+texture_normal = ExtResource("3_v6w1o")
+texture_hover = ExtResource("4_snukx")
+ignore_texture_size = true
+stretch_mode = 0
+
+[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="TextureButton"]
+stream = ExtResource("5_fke0j")
+volume_db = -3.747
+autoplay = true
+
+[node name="ParallaxBackground" type="ParallaxBackground" parent="TextureButton/AudioStreamPlayer"]
+
+[node name="ParallaxLayer2" type="ParallaxLayer" parent="TextureButton/AudioStreamPlayer/ParallaxBackground"]
+texture_repeat = 3
+motion_scale = Vector2(0.3, 0.3)
+motion_mirroring = Vector2(1220, 0)
+
+[node name="Sprite2D" type="Sprite2D" parent="TextureButton/AudioStreamPlayer/ParallaxBackground/ParallaxLayer2"]
+position = Vector2(562, 372)
+scale = Vector2(0.6, 0.6)
+texture = ExtResource("6_yje40")
+
+[node name="ParallaxLayer" type="ParallaxLayer" parent="TextureButton/AudioStreamPlayer/ParallaxBackground"]
+texture_repeat = 3
+motion_mirroring = Vector2(1220, 0)
+
+[node name="Sprite2D" type="Sprite2D" parent="TextureButton/AudioStreamPlayer/ParallaxBackground/ParallaxLayer"]
+position = Vector2(585, 365)
+scale = Vector2(0.6, 0.6)
+texture = ExtResource("7_v6uu7")
+
+[connection signal="pressed" from="TextureButton" to="." method="_on_texture_button_pressed"]
